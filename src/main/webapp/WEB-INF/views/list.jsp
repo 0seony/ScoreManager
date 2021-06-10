@@ -14,7 +14,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>idx</th><th>이름</th><th>중간고사 점수</th><th>기말고사 점수</th><th>생성일</th><th></th>
+                    <th>idx</th><th>이름</th><th>중간고사 점수</th><th>기말고사 점수</th><th>생성일</th><th></th><th></th>
                 </tr>
             </thead>
             <tbody>

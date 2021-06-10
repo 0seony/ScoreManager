@@ -54,6 +54,9 @@ public class HomeController {
 			htmlString += "<td>";
 			htmlString += "<a href='update?idx=" + scorelist.get(i).idx +"'>수정</a>";
 			htmlString += "</td>";
+			htmlString += "<td>";
+			htmlString += "<a href='delete?idx=" + scorelist.get(i).idx +"'>삭제</a>";
+			htmlString += "</td>";
 			htmlString += "</tr>";
 		}
 		model.addAttribute("list", htmlString);
@@ -117,6 +120,17 @@ public class HomeController {
 		db.updateData(new ScoreList(idx, sName, middleScore, finalScore, updated));
 		
 		model.addAttribute("notice", "데이터가 수정되었습니다.");
+		return "message";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteMethod(Locale locale, Model model, @RequestParam("idx") int idx) {
+		DBCommon<ScoreList> db = new DBCommon<ScoreList>("d:/tomcat/scorelist.db", "scoretable");
+		ScoreList selectStudent = db.detailsData(new ScoreList(), idx);
+		if (selectStudent != null) {
+			db.deleteData(selectStudent);
+			model.addAttribute("notice", "데이터가 삭제되었습니다.");
+		}
 		return "message";
 	}
 	
